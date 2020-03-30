@@ -10,5 +10,21 @@
 
 See [Build](Build.md).
 
+There are also some remarks on how the `Dockerfile` was created at [Containerization](Containerization.md).
+
+## Obtaining the Container Image Without Building it
+
+Using Docker [2] the Secondo image can be pulled from DockerHub [3]: 
+
+    docker pull fischerjulian/secondo:<version>
+
+See https://hub.docker.com/repository/docker/fischerjulian/secondo for recent versions.
+
+## Running the Container Image
+
+See [Run](Run.md).
+
 ## Links
 1. http://dna.fernuni-hagen.de/secondo/
+2. Docker, https://www.docker.com/community/open-source
+3. DockerHub, https://hub.docker.com/
