@@ -24,6 +24,10 @@ See https://hub.docker.com/repository/docker/fischerjulian/secondo for recent ve
 
 See [Run](Run.md).
 
+## Using Secondo
+
+See [Using](UsingSecondo.md).
+
 ## Links
 1. http://dna.fernuni-hagen.de/secondo/
 2. Docker, https://www.docker.com/community/open-source
