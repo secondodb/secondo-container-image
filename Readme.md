@@ -8,25 +8,43 @@
 
 ## Building the Container Image
 
-See [Build](Build.md).
+The image can be build by using:
+
+    docker image build -t secondo:<version> .
+
+Where `<version>` is of the form `major.minor.patchlevel` such as `0.4.0`:
+
+    docker image build -t secondo:0.4.0 .
 
 There are also some remarks on how the `Dockerfile` was created at [Containerization](Containerization.md).
+
+## Publish to DockerHub
+
+In order to publish the local image to the DockerHub [3] container registry first tag the local image:
+
+    docker tag secondo:0.4.0 secondodb/secondo:0.4.0
+
+Then push it:
+
+    docker push secondodb/secondo:0.4.0
+
+Which will upload it to the registry.
 
 ## Obtaining the Container Image Without Building it
 
 Using Docker [2] the Secondo image can be pulled from DockerHub [3]: 
 
-    docker pull fischerjulian/secondo:<version>
+    docker pull secondodb/secondo:<version>
 
-See https://hub.docker.com/repository/docker/fischerjulian/secondo for recent versions.
+See https://hub.docker.com/repository/docker/secondodb/secondo for recent versions.
 
 ## Running the Container Image
 
-See [Run](Run.md).
+In order to run the container execute:
 
-## Using Secondo
+    docker container run -it --name secondo --mount source=secondo-databases,target=/database/secondo-databases -p 1234:1234 secondo:<version>
 
-See [Using](UsingSecondo.md).
+For more details see [Run](Run.md).
 
 ## Links
 1. http://dna.fernuni-hagen.de/secondo/
