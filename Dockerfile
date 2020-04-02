@@ -30,7 +30,7 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get -y install \
     swi-prolog-java 
 
 # Container Image related
-RUN apt-get -y install wget
+RUN apt-get -y update && apt-get -y install wget
 
 WORKDIR /database
 
@@ -47,7 +47,7 @@ RUN /bin/bash -c "source .secondorc && cd secondo && make"
 COPY SecondoConfig.ini /database/secondo/bin/SecondoConfig.ini
 
 # For debugging
-RUN apt-get -y install vim net-tools
+RUN apt-get -y update && apt-get -y install vim net-tools
 
 # Deinstall compile time dependencies
 RUN rm secondo-v413P1-LAT1.tgz
