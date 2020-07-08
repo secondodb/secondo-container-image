@@ -27,20 +27,25 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get -y install \
     swi-prolog \
     swi-prolog-nox \
     swi-prolog-x \
-    swi-prolog-java 
+    swi-prolog-java    
 
 # Container Image related
 RUN apt-get -y update && apt-get -y install wget
 
 WORKDIR /database
 
-RUN wget http://dna.fernuni-hagen.de/Secondo.html/files/Sources/secondo-v413P1-LAT1.tgz
-RUN tar xzvf secondo-v413P1-LAT1.tgz
+# # RUN wget http://dna.fernuni-hagen.de/Secondo.html/files/Sources/secondo-v413P1-LAT1.tgz
+RUN wget http://dna.fernuni-hagen.de/secondo/files/Sources/secondo-v420-LAT1.tgz
+RUN tar xzvf secondo-v420-LAT1.tgz
+
+COPY makefile.algebras.sample /database/secondo/makefile.algebras
 
 COPY create-secondorc.sh /database
 
 # Create
 RUN bash create-secondorc.sh
+
+RUN cd /database/secondo && touch $(grep -l "THREAD_SAFE" $(find -iname "*.h" -o -iname "*.cpp"))
 
 RUN /bin/bash -c "source .secondorc && cd secondo && make"
 
@@ -50,8 +55,17 @@ COPY SecondoConfig.ini /database/secondo/bin/SecondoConfig.ini
 RUN apt-get -y update && apt-get -y install vim net-tools
 
 # Deinstall compile time dependencies
-RUN rm secondo-v413P1-LAT1.tgz
+RUN rm secondo-v420-LAT1.tgz
 RUN rm create-secondorc.sh
+
+# Install additional tools
+RUN apt-get -y update && apt-get -y upgrade && apt-get -y install \
+    wget \
+    net-tools \
+    vim \
+    telnet \
+    dnsutils \
+    curl
 
 # Helpful if /bin/bash is used to log into a container
 RUN echo "source /database/.secondorc" >> /etc/bash.bashrc

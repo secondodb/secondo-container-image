@@ -10,11 +10,11 @@ The image can be started as described in the following.
 
 In order to run the SecondoMonitor:
 
-    docker container run -it --name secondo -p 1234:1234 secondo:0.4.0
+    docker container run -it --name secondo -p 1234:1234 secondo:4.2.0.6
 
 ## Server With Volume
 
-    docker container run -it --name secondo --mount source=secondo-databases,target=/database/secondo-databases -p 1234:1234 secondo:0.4.0
+    docker container run -it --name secondo --mount source=secondo-databases,target=/database/secondo-databases -p 1234:1234 secondo:4.2.0.6
 
 ## Shell
 
@@ -28,7 +28,7 @@ In order to get a shell into a running secondo use:
 
 You can start a Secondo container with a shell by executing:
 
-    docker run -it secondo:0.4.0 /bin/bash
+    docker run -it secondo:4.2.0.6 /bin/bash
 
 You can then open an interactive Secondo TTY:
     

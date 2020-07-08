@@ -12,9 +12,9 @@ The image can be build by using:
 
     docker image build -t secondo:<version> .
 
-Where `<version>` is of the form `major.minor.patchlevel` such as `0.4.0`:
+Where `<version>` is of the form `major.minor.patchlevel` such as `4.2.0.6`:
 
-    docker image build -t secondo:0.4.0 .
+    docker image build -t secondo:4.2.0.6 .
 
 There are also some remarks on how the `Dockerfile` was created at [Containerization](Containerization.md).
 
@@ -22,11 +22,11 @@ There are also some remarks on how the `Dockerfile` was created at [Containeriza
 
 In order to publish the local image to the DockerHub [3] container registry first tag the local image:
 
-    docker tag secondo:0.4.0 secondodb/secondo:0.4.0
+    docker tag secondo:4.2.0.6 secondodb/secondo:4.2.0.6
 
 Then push it:
 
-    docker push secondodb/secondo:0.4.0
+    docker push secondodb/secondo:4.2.0.6
 
 Which will upload it to the registry.
 
