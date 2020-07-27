@@ -38,7 +38,9 @@ WORKDIR /database
 RUN wget http://dna.fernuni-hagen.de/secondo/files/Sources/secondo-v420-LAT1.tgz
 RUN tar xzvf secondo-v420-LAT1.tgz
 
-COPY makefile.algebras.sample /database/secondo/makefile.algebras
+# Modified files
+COPY secondo/makefile.algebras.sample /database/secondo/makefile.algebras
+COPY secondo/makefile /database/secondo/makefile
 
 COPY create-secondorc.sh /database
 
@@ -47,7 +49,17 @@ RUN bash create-secondorc.sh
 
 RUN cd /database/secondo && touch $(grep -l "THREAD_SAFE" $(find -iname "*.h" -o -iname "*.cpp"))
 
-RUN /bin/bash -c "source .secondorc && cd secondo && make"
+
+
+# Build DBService Algebra
+COPY secondo/Algebras/DBService/DBServiceManager.cpp        /database/secondo/Algebras/DBService/DBServiceManager.cpp
+COPY secondo/Algebras/DBService/LocationInfo.hpp            /database/secondo/Algebras/DBService/LocationInfo.hpp
+COPY secondo/Algebras/DBService/LocationInfo.cpp            /database/secondo/Algebras/DBService/LocationInfo.cpp
+COPY secondo/Algebras/DBService/Test/LocationInfoTest.cpp   /database/secondo/Algebras/DBService/Test/LocationInfoTest.cpp 
+
+RUN /bin/bash -c "source .secondorc && cd secondo && make TTY"
+
+# RUN /bin/bash -c "source .secondorc && cd secondo/Algebras/DBService && make clean && make"
 
 COPY SecondoConfig.ini /database/secondo/bin/SecondoConfig.ini
 

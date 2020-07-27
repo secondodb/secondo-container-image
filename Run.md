@@ -1,4 +1,6 @@
-# Using the Secondo Image
+# Using the Secondo Image with Docker [Deprecated]
+
+**This section is deprecated. Please use Kubernetes instead of Docker**.
 
 The following describes how to run and use the Secondo database.
 
@@ -10,11 +12,11 @@ The image can be started as described in the following.
 
 In order to run the SecondoMonitor:
 
-    docker container run -it --name secondo -p 1234:1234 secondo:4.2.0.6
+    docker container run -it --name secondo -p 1234:1234 secondo:4.2.0.7
 
 ## Server With Volume
 
-    docker container run -it --name secondo --mount source=secondo-databases,target=/database/secondo-databases -p 1234:1234 secondo:4.2.0.6
+    docker container run -it --name secondo --mount source=secondo-databases,target=/database/secondo-databases -p 1234:1234 secondo:4.2.0.7
 
 ## Shell
 
@@ -28,7 +30,7 @@ In order to get a shell into a running secondo use:
 
 You can start a Secondo container with a shell by executing:
 
-    docker run -it secondo:4.2.0.6 /bin/bash
+    docker run -it secondo:4.2.0.7 /bin/bash
 
 You can then open an interactive Secondo TTY:
     

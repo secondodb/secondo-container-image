@@ -12,9 +12,9 @@ The image can be build by using:
 
     docker image build -t secondo:<version> .
 
-Where `<version>` is of the form `major.minor.patchlevel` such as `4.2.0.6`:
+Where `<version>` is of the form `major.minor.patchlevel` such as `4.2.0.18`:
 
-    docker image build -t secondo:4.2.0.6 .
+    docker image build -t secondo:4.2.0.18 .
 
 There are also some remarks on how the `Dockerfile` was created at [Containerization](Containerization.md).
 
@@ -22,11 +22,12 @@ There are also some remarks on how the `Dockerfile` was created at [Containeriza
 
 In order to publish the local image to the DockerHub [3] container registry first tag the local image:
 
-    docker tag secondo:4.2.0.6 secondodb/secondo:4.2.0.6
+    docker tag secondo:4.2.0.18 secondodb/secondo:4.2.0.18
+    
 
 Then push it:
 
-    docker push secondodb/secondo:4.2.0.6
+   docker push secondodb/secondo:4.2.0.18
 
 Which will upload it to the registry.
 
@@ -37,6 +38,10 @@ Using Docker [2] the Secondo image can be pulled from DockerHub [3]:
     docker pull secondodb/secondo:<version>
 
 See https://hub.docker.com/repository/docker/secondodb/secondo for recent versions.
+
+## One Liner
+
+ docker image build -t secondo:4.2.0.18 . && docker tag secondo:4.2.0.18 secondodb/secondo:4.2.0.18 && docker push secondodb/secondo:4.2.0.18
 
 ## Running the Container Image
 
